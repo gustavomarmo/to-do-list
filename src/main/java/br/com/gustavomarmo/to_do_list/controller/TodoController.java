@@ -1,11 +1,9 @@
 package br.com.gustavomarmo.to_do_list.controller;
 
-import br.com.gustavomarmo.to_do_list.entity.Todo;
+import br.com.gustavomarmo.to_do_list.model.Todo;
 import br.com.gustavomarmo.to_do_list.service.TodoService;
 import org.springframework.web.bind.annotation.*;
 
-import javax.management.openmbean.TabularData;
-import java.security.Provider;
 import java.util.List;
 
 @RestController

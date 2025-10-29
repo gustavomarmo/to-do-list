@@ -1,6 +1,6 @@
 package br.com.gustavomarmo.to_do_list.service;
 
-import br.com.gustavomarmo.to_do_list.entity.Todo;
+import br.com.gustavomarmo.to_do_list.model.Todo;
 import br.com.gustavomarmo.to_do_list.repository.TodoRepository;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -17,7 +17,6 @@ public class TodoService {
     }
 
     public List<Todo> create(Todo todo) {
-        // Metodo do próprio JPA????
         todoRepository.save(todo);
         return list();
     }
