@@ -19,12 +19,7 @@ public class TodoService {
         return list();
     }
     public List<Todo> list() {
-        // Retorna todas as tarefas
-        // E
-        Sort sort = Sort.by("prioridade").descending().and(
-                Sort.by("nome").ascending()
-        );
-        return todoRepository.findAll(sort);
+        return todoRepository.findAll();
     }
     public List<Todo> update(Todo todo) {
         // Não entendi??
