@@ -2,19 +2,17 @@ package br.com.gustavomarmo.to_do_list.service;
 
 import br.com.gustavomarmo.to_do_list.model.Todo;
 import br.com.gustavomarmo.to_do_list.repository.TodoRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@AllArgsConstructor
 // Aqui vão todas as operações que vamos fazer
 @Service
 public class TodoService {
     private TodoRepository todoRepository;
-
-    public TodoService(TodoRepository todoRepository) {
-        this.todoRepository = todoRepository;
-    }
 
     public List<Todo> create(Todo todo) {
         todoRepository.save(todo);

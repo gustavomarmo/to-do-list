@@ -2,19 +2,16 @@ package br.com.gustavomarmo.to_do_list.controller;
 
 import br.com.gustavomarmo.to_do_list.model.Todo;
 import br.com.gustavomarmo.to_do_list.service.TodoService;
+import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@AllArgsConstructor
 @RestController
 @RequestMapping("/todos") // Ele vai atender quando for colocada essa rota na URL
 public class TodoController {
     private TodoService todoService;
-
-    // Injeção via Construtors - Debater com Marcão sobre as injeções
-    public TodoController(TodoService todoService) {
-        this.todoService = todoService;
-    }
 
     @PostMapping
     // @RequestBody indica que a pessoa deve passar o Todo no body do POST
