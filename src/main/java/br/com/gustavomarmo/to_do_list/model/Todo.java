@@ -21,11 +21,4 @@ public class Todo {
     private boolean realizado;
     private int prioridade;
 
-    public boolean isRealizado() {
-        return realizado;
-    }
-
-    public void setRealizado(boolean realizado) {
-        this.realizado = realizado;
-    }
 }

@@ -4,6 +4,10 @@ import br.com.gustavomarmo.to_do_list.dto.TodoDTO;
 import br.com.gustavomarmo.to_do_list.model.Todo;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Component // Permite o Spring identificar a classe e permite injetá-la
 public class TodoMapper {
 
@@ -28,5 +32,11 @@ public class TodoMapper {
         dto.setPrioridade(todo.getPrioridade());
 
         return dto;
+    }
+
+    public List<TodoDTO> toResponseDTOList(List<Todo> todoList) {
+        return todoList.stream()
+                .map(this::toResponseDTO) // Converte cada Todo para TodoDTO
+                .collect(Collectors.toList());  // Coleta o resultado em uma nova lista
     }
 }

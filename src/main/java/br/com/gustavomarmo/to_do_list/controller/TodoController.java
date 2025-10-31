@@ -14,34 +14,37 @@ import java.util.List;
 @RequestMapping("/todos") // Ele vai atender quando for colocada essa rota na URL
 public class TodoController {
     private TodoService todoService;
+    private TodoMapper todoMapper;
 
     @PostMapping
     // @RequestBody indica que a pessoa deve passar o Todo no body do POST
-    List<Todo> create(@RequestBody TodoDTO dto){
-        // 1) Instancio minha mapper
-        TodoMapper mapper = new TodoMapper();
-
+    List<TodoDTO> create(@RequestBody TodoDTO dto){
         // 2) Aqui a Controller vai chamar o Mapper usando o DTO que ela recebeu, e vai instanciar um todo
-        Todo todo = mapper.toEntity(dto);
+        Todo todo = todoMapper.toEntity(dto);
 
         // 3) Aqui a Controller chama o Service porque ela já tem o model em mãos
-        return todoService.create(todo);
+        return todoMapper.toResponseDTOList((todoService.create(todo)));
     }
 
-    // Especialização do endpoint
+    // Especialização do endpoint, AINDA NECESSÁRIO FAZER
     @GetMapping
-    List<Todo> list() {
-        return todoService.list();
+    List<TodoDTO> list() {
+        TodoMapper mapper = new TodoMapper();
+
+        return todoMapper.toResponseDTOList((todoService.list()));
     }
 
     @PutMapping
-    List<Todo> update(@RequestBody Todo todo) {
-        return todoService.update(todo);
+    List<TodoDTO> update(@RequestBody TodoDTO dto) {
+        Todo todo = todoMapper.toEntity(dto);
+
+        return todoMapper.toResponseDTOList((todoService.update(todo)));
     }
 
     @DeleteMapping("{id}") // A pessoa vai deletar colocando o parâmetro no caminho
-    List<Todo> delete(@PathVariable("id") Long id) {
-        return todoService.delete(id);
+    List<TodoDTO> delete(@PathVariable("id") Long id) {
+
+        return todoMapper.toResponseDTOList(todoService.delete(id));
     }
 
 }
