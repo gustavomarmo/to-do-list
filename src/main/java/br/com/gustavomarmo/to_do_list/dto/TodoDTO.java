@@ -8,6 +8,4 @@ public class TodoDTO {
     private String descricao;
     private boolean realizado;
     private int prioridade;
-
-
 }
