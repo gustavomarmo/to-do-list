@@ -3,8 +3,6 @@ package br.com.gustavomarmo.to_do_list.mapper;
 import br.com.gustavomarmo.to_do_list.dto.TodoDTO;
 import br.com.gustavomarmo.to_do_list.model.Todo;
 import org.springframework.stereotype.Component;
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 

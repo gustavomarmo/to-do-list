@@ -19,8 +19,16 @@ public class TodoService {
     public List<Todo> list() {
         return todoRepository.findAll();
     }
-    public List<Todo> update(Todo todo) {
-        todoRepository.save(todo);
+    public List<Todo> update(Long id, Todo todo) {
+        Todo todoExistente = todoRepository.findById(id)
+                        .orElseThrow(() -> new RuntimeException("Todo não encontrado com id: " + id));
+
+        todoExistente.setNome(todo.getNome());
+        todoExistente.setDescricao(todo.getDescricao());
+        todoExistente.setRealizado(todo.isRealizado());
+        todoExistente.setPrioridade(todo.getPrioridade());
+
+        todoRepository.save(todoExistente);
         return list();
     }
     public List<Todo> delete(Long id) {

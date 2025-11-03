@@ -32,11 +32,11 @@ public class TodoController {
         return todoMapper.ResponseDTOList((todoService.list()));
     }
 
-    @PutMapping
-    List<TodoDTO> update(@RequestBody TodoDTO dto) {
+    @PutMapping("/{id}")
+    List<TodoDTO> update(@PathVariable("id") Long id, @RequestBody TodoDTO dto) {
         Todo todo = todoMapper.ResponseEntity(dto);
 
-        return todoMapper.ResponseDTOList((todoService.update(todo)));
+        return todoMapper.ResponseDTOList((todoService.update(id, todo)));
     }
 
     @DeleteMapping("/{id}")
