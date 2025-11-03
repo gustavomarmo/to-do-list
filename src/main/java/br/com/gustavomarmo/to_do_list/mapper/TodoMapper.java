@@ -8,13 +8,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Component // Permite o Spring identificar a classe e permite injetá-la
+@Component
 public class TodoMapper {
 
-    public Todo toEntity(TodoDTO dto){
+    public Todo ResponseEntity(TodoDTO dto){
         Todo todo = new Todo();
 
-        // Não preciso setar o ID aqui porque quando instancio o objeto todo, ele já cria um ID automático
         todo.setNome(dto.getNome());
         todo.setDescricao(dto.getDescricao());
         todo.setRealizado(dto.isRealizado());
@@ -23,9 +22,10 @@ public class TodoMapper {
         return todo;
     }
 
-    public TodoDTO toResponseDTO(Todo todo){
+    public TodoDTO ResponseDTO(Todo todo){
         TodoDTO dto = new TodoDTO();
 
+        dto.setId(todo.getId());
         dto.setNome(todo.getNome());
         dto.setDescricao(todo.getDescricao());
         dto.setRealizado(todo.isRealizado());
@@ -34,9 +34,9 @@ public class TodoMapper {
         return dto;
     }
 
-    public List<TodoDTO> toResponseDTOList(List<Todo> todoList) {
+    public List<TodoDTO> ResponseDTOList(List<Todo> todoList) {
         return todoList.stream()
-                .map(this::toResponseDTO) // Converte cada Todo para TodoDTO
-                .collect(Collectors.toList());  // Coleta o resultado em uma nova lista
+                .map(this::ResponseDTO)
+                .collect(Collectors.toList());
     }
 }

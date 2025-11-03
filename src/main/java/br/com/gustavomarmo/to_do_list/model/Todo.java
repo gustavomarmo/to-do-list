@@ -10,12 +10,12 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "todos") // Nome da tabela no banco
+@Table(name = "todos")
 public class Todo {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // Cria uma sequência aleatória lá no banco
-    private Long id; // Identificado único do registro no banco
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String nome;
     private String descricao;
     private boolean realizado;

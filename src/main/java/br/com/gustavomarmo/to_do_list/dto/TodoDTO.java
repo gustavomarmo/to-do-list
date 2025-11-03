@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Data
 public class TodoDTO {
+    private Long id;
     private String nome;
     private String descricao;
     private boolean realizado;
