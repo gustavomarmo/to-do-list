@@ -12,9 +12,8 @@ import java.util.List;
 public class TodoService {
     private TodoRepository todoRepository;
 
-    public List<Todo> create(Todo todo) {
-        todoRepository.save(todo);
-        return list();
+    public Long create(Todo todo) {
+        return (todoRepository.save(todo)).getId();
     }
     public List<Todo> list() {
         return todoRepository.findAll();

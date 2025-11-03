@@ -20,9 +20,9 @@ public class TodoController {
     }
 
     @PostMapping
-    List<TodoDTO> create(@RequestBody TodoDTO dto){
+    Long create(@RequestBody TodoDTO dto){
         Todo todo = todoMapper.ResponseEntity(dto);
-        return todoMapper.ResponseDTOList((todoService.create(todo)));
+        return (todoService.create(todo));
     }
 
     @GetMapping
