@@ -22,12 +22,12 @@ public class TodoController {
     @PostMapping
     Long create(@RequestBody TodoDTO dto){
         Todo todo = todoMapper.ResponseEntity(dto);
-        return (todoService.create(todo));
+
+        return todoMapper.ResponseDTO(todoService.create(todo)).getId();
     }
 
     @GetMapping
     List<TodoDTO> list() {
-
         return todoMapper.ResponseDTOList((todoService.list()));
     }
 
