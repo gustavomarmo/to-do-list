@@ -27,9 +27,13 @@ public class TodoController {
 
     @GetMapping
     List<TodoDTO> list() {
-        TodoMapper mapper = new TodoMapper();
 
         return todoMapper.ResponseDTOList((todoService.list()));
+    }
+
+    @GetMapping("/{id}")
+    TodoDTO find(@PathVariable Long id){
+        return todoMapper.ResponseDTO(todoService.find(id));
     }
 
     @PutMapping("/{id}")

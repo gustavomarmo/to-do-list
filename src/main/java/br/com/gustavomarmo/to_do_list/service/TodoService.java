@@ -19,9 +19,14 @@ public class TodoService {
     public List<Todo> list() {
         return todoRepository.findAll();
     }
+    public Todo find(Long id) {
+        return todoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Tarefa não encontrada com id: " + id));
+    }
+
     public List<Todo> update(Long id, Todo todo) {
         Todo todoExistente = todoRepository.findById(id)
-                        .orElseThrow(() -> new RuntimeException("Todo não encontrado com id: " + id));
+                        .orElseThrow(() -> new RuntimeException("Tarefa não encontrada com id: " + id));
 
         todoExistente.setNome(todo.getNome());
         todoExistente.setDescricao(todo.getDescricao());
