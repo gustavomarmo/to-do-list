@@ -2,15 +2,16 @@ package br.com.gustavomarmo.to_do_list.service;
 
 import br.com.gustavomarmo.to_do_list.model.Todo;
 import br.com.gustavomarmo.to_do_list.repository.TodoRepository;
-import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
-@AllArgsConstructor
 @Service
 public class TodoService {
     private TodoRepository todoRepository;
+
+    public TodoService(TodoRepository todoRepository) {
+        this.todoRepository = todoRepository;
+    }
 
     public Todo create(Todo todo) {
         return todoRepository.save(todo);

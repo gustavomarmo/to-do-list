@@ -4,7 +4,6 @@ import br.com.gustavomarmo.to_do_list.dto.TodoDTO;
 import br.com.gustavomarmo.to_do_list.model.Todo;
 import org.springframework.stereotype.Component;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Component
 public class TodoMapper {
@@ -35,6 +34,6 @@ public class TodoMapper {
     public List<TodoDTO> ResponseDTOList(List<Todo> todoList) {
         return todoList.stream()
                 .map(this::ResponseDTO)
-                .collect(Collectors.toList());
+                .toList();
     }
 }
