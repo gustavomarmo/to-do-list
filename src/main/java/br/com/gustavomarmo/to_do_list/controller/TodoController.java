@@ -19,11 +19,6 @@ public class TodoController {
         this.todoMapper = todoMapper;
     }
 
-    @PostMapping
-    Long create(@RequestBody TodoDTO dto){
-        return todoMapper.ResponseDTO(todoService.create(todoMapper.ResponseEntity(dto))).getId();
-    }
-
     @GetMapping
     List<TodoDTO> list() {
         return todoMapper.ResponseDTOList((todoService.list()));
@@ -34,16 +29,18 @@ public class TodoController {
         return todoMapper.ResponseDTO(todoService.find(id));
     }
 
+    @PostMapping
+    Long create(@RequestBody TodoDTO dto){
+        return todoMapper.ResponseDTO(todoService.create(todoMapper.ResponseEntity(dto))).getId();
+    }
+
     @PutMapping("/{id}")
     List<TodoDTO> update(@PathVariable("id") Long id, @RequestBody TodoDTO dto) {
-        Todo todo = todoMapper.ResponseEntity(dto);
-
-        return todoMapper.ResponseDTOList((todoService.update(id, todo)));
+        return todoMapper.ResponseDTOList((todoService.update(id,todoMapper.ResponseEntity(dto))));
     }
 
     @DeleteMapping("/{id}")
     List<TodoDTO> delete(@PathVariable("id") Long id) {
-
         return todoMapper.ResponseDTOList(todoService.delete(id));
     }
 
