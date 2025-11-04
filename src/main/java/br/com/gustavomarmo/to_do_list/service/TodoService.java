@@ -16,9 +16,11 @@ public class TodoService {
     public Todo create(Todo todo) {
         return todoRepository.save(todo);
     }
+
     public List<Todo> list() {
         return todoRepository.findAll();
     }
+
     public Todo find(Long id) {
         return todoRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Tarefa não encontrada com id: " + id));

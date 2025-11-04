@@ -1,6 +1,7 @@
 package br.com.gustavomarmo.to_do_list.mapper;
 
 import br.com.gustavomarmo.to_do_list.dto.TodoDTO;
+import br.com.gustavomarmo.to_do_list.dto.TodoUpdateDTO;
 import br.com.gustavomarmo.to_do_list.model.Todo;
 import org.springframework.stereotype.Component;
 import java.util.List;
@@ -17,6 +18,21 @@ public class TodoMapper {
         todo.setPrioridade(dto.getPrioridade());
 
         return todo;
+    }
+
+    public void responseEntityUpdate(TodoUpdateDTO dto, Todo todo){
+        if (dto.getNome() != null) {
+            todo.setNome(dto.getNome());
+        }
+        if (dto.getDescricao() != null) {
+            todo.setDescricao(dto.getDescricao());
+        }
+        if (dto.getRealizado() != null) {
+            todo.setRealizado(dto.getRealizado());
+        }
+        if (dto.getPrioridade() != null) {
+            todo.setPrioridade(dto.getPrioridade());
+        }
     }
 
     public TodoDTO responseDTO(Todo todo){

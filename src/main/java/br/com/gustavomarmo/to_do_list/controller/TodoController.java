@@ -1,7 +1,9 @@
 package br.com.gustavomarmo.to_do_list.controller;
 
 import br.com.gustavomarmo.to_do_list.dto.TodoDTO;
+import br.com.gustavomarmo.to_do_list.dto.TodoUpdateDTO;
 import br.com.gustavomarmo.to_do_list.mapper.TodoMapper;
+import br.com.gustavomarmo.to_do_list.model.Todo;
 import br.com.gustavomarmo.to_do_list.service.TodoService;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
@@ -35,8 +37,13 @@ public class TodoController {
     }
 
     @PutMapping("/{id}")
-    List<TodoDTO> update(@PathVariable("id") Long id, @Valid @RequestBody TodoDTO dto) {
-        return todoMapper.responseDTOList((todoService.update(id,todoMapper.responseEntity(dto))));
+    List<TodoDTO> update(@PathVariable("id") Long id, @Valid @RequestBody TodoUpdateDTO updateDTO) {
+        Todo todoExistente = todoService.find(id);
+
+        todoMapper.responseEntityUpdate(updateDTO, todoExistente);
+        todoService.create(todoExistente);
+
+        return todoMapper.responseDTOList(todoService.list());
     }
 
     @DeleteMapping("/{id}")
