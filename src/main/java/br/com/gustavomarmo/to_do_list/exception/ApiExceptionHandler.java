@@ -9,8 +9,8 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice
 public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler(TodoNotFoundException.class)
-    private ResponseEntity<ApiErrorMessage> todoNotFoundHandler(TodoNotFoundException exception) {
+    @ExceptionHandler(TaskNotFoundException.class)
+    private ResponseEntity<ApiErrorMessage> taskNotFoundHandler(TaskNotFoundException exception) {
         ApiErrorMessage mensagemTratada = new ApiErrorMessage(HttpStatus.NOT_FOUND, exception.getMessage());
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(mensagemTratada);
     }

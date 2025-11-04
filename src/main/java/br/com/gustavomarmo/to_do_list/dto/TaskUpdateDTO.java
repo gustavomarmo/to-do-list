@@ -4,7 +4,7 @@ import jakarta.validation.constraints.*;
 import lombok.Data;
 
 @Data
-public class TodoUpdateDTO {
+public class TaskUpdateDTO {
 
     private Long id;
 

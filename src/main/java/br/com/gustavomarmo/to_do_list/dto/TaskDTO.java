@@ -5,7 +5,7 @@ import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 
 @Data
-public class TodoDTO {
+public class TaskDTO {
 
     // Validar com Marcão se colocamos mensagens aqui na validação ou se só deixamos para a trativa de erro
     @Null(message = "O ID não pode ser enviado no corpo da requisição")
