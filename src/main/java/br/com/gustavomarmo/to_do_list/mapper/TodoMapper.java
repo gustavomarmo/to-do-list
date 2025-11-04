@@ -8,18 +8,18 @@ import java.util.List;
 @Component
 public class TodoMapper {
 
-    public Todo ResponseEntity(TodoDTO dto){
+    public Todo responseEntity(TodoDTO dto){
         Todo todo = new Todo();
 
         todo.setNome(dto.getNome());
         todo.setDescricao(dto.getDescricao());
-        todo.setRealizado(dto.isRealizado());
+        todo.setRealizado(dto.getRealizado());
         todo.setPrioridade(dto.getPrioridade());
 
         return todo;
     }
 
-    public TodoDTO ResponseDTO(Todo todo){
+    public TodoDTO responseDTO(Todo todo){
         TodoDTO dto = new TodoDTO();
 
         dto.setId(todo.getId());
@@ -31,9 +31,9 @@ public class TodoMapper {
         return dto;
     }
 
-    public List<TodoDTO> ResponseDTOList(List<Todo> todoList) {
+    public List<TodoDTO> responseDTOList(List<Todo> todoList) {
         return todoList.stream()
-                .map(this::ResponseDTO)
+                .map(this::responseDTO)
                 .toList();
     }
 }

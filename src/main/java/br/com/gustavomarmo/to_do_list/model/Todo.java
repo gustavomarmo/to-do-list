@@ -26,7 +26,6 @@ public class Todo {
 
     @UpdateTimestamp
     private LocalDateTime dataAtualizacao;
-
     private String nome;
     private String descricao;
     private boolean realizado;
