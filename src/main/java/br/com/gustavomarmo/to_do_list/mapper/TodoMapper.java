@@ -9,6 +9,7 @@ import java.util.List;
 @Component
 public class TodoMapper {
 
+    // Não posso usar esse método porque ele é responsável só pela criação, ou seja, ele não recebe parâmetros null
     public Todo responseEntity(TodoDTO dto){
         Todo todo = new Todo();
 

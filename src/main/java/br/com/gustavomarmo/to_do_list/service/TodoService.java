@@ -1,5 +1,6 @@
 package br.com.gustavomarmo.to_do_list.service;
 
+import br.com.gustavomarmo.to_do_list.exception.TodoNotFoundException;
 import br.com.gustavomarmo.to_do_list.model.Todo;
 import br.com.gustavomarmo.to_do_list.repository.TodoRepository;
 import org.springframework.stereotype.Service;
@@ -23,7 +24,7 @@ public class TodoService {
 
     public Todo find(Long id) {
         return todoRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Tarefa não encontrada com id: " + id));
+                .orElseThrow(() -> new TodoNotFoundException());
     }
 
     public List<Todo> update(Long id, Todo todo) {

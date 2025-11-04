@@ -41,6 +41,7 @@ public class TodoController {
         Todo todoExistente = todoService.find(id);
 
         todoMapper.responseEntityUpdate(updateDTO, todoExistente);
+        // Essa é a melhor maneira?
         todoService.create(todoExistente);
 
         return todoMapper.responseDTOList(todoService.list());
