@@ -24,17 +24,26 @@ public class TaskService {
 
     public Task find(Long id) {
         return taskRepository.findById(id)
-                .orElseThrow(() -> new TaskNotFoundException());
+                .orElseThrow(TaskNotFoundException::new);
     }
 
     public List<Task> update(Long id, Task task) {
+
         Task taskExistente = taskRepository.findById(id)
                         .orElseThrow(() -> new RuntimeException("Tarefa não encontrada com id: " + id));
 
-        taskExistente.setNome(task.getNome());
-        taskExistente.setDescricao(task.getDescricao());
-        taskExistente.setRealizado(task.isRealizado());
-        taskExistente.setPrioridade(task.getPrioridade());
+        if (task.getNome() != null) {
+            taskExistente.setNome(task.getNome());
+        }
+        if (task.getDescricao() != null) {
+            taskExistente.setDescricao(task.getDescricao());
+        }
+        if (task.isRealizado() != null) {
+            taskExistente.setRealizado(task.isRealizado());
+        }
+        if (task.getPrioridade() != null) {
+            taskExistente.setPrioridade(task.getPrioridade());
+        }
 
         taskRepository.save(taskExistente);
         return list();

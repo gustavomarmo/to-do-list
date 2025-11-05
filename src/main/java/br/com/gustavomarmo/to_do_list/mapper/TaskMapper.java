@@ -9,7 +9,6 @@ import java.util.List;
 @Component
 public class TaskMapper {
 
-    // Não posso usar esse método porque ele é responsável só pela criação, ou seja, ele não recebe parâmetros null
     public Task responseEntity(TaskDTO dto){
         Task task = new Task();
 
@@ -20,20 +19,15 @@ public class TaskMapper {
 
         return task;
     }
+    public Task responseEntityUpdate(TaskUpdateDTO dto){
+        Task task = new Task();
 
-    public void responseEntityUpdate(TaskUpdateDTO dto, Task task){
-        if (dto.getNome() != null) {
-            task.setNome(dto.getNome());
-        }
-        if (dto.getDescricao() != null) {
-            task.setDescricao(dto.getDescricao());
-        }
-        if (dto.getRealizado() != null) {
-            task.setRealizado(dto.getRealizado());
-        }
-        if (dto.getPrioridade() != null) {
-            task.setPrioridade(dto.getPrioridade());
-        }
+        task.setNome(dto.getNome());
+        task.setDescricao(dto.getDescricao());
+        task.setRealizado(dto.getRealizado());
+        task.setPrioridade(dto.getPrioridade());
+
+        return task;
     }
 
     public TaskDTO responseDTO(Task task){

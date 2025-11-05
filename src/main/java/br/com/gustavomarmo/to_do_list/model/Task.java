@@ -26,9 +26,14 @@ public class Task {
 
     @UpdateTimestamp
     private LocalDateTime dataAtualizacao;
+
     private String nome;
     private String descricao;
-    private boolean realizado;
-    private int prioridade;
+    private Boolean realizado;
+    private Integer prioridade;
+
+    public Boolean isRealizado() {
+        return this.realizado;
+    }
 
 }

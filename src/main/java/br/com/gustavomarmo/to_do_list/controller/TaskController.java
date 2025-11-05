@@ -13,6 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/tasks")
 public class TaskController {
+
     private final TaskService taskService;
     private final TaskMapper taskMapper;
 
@@ -38,13 +39,8 @@ public class TaskController {
 
     @PutMapping("/{id}")
     List<TaskDTO> update(@PathVariable("id") Long id, @Valid @RequestBody TaskUpdateDTO updateDTO) {
-        Task taskExistente = taskService.find(id);
-
-        taskMapper.responseEntityUpdate(updateDTO, taskExistente);
-        // Essa é a melhor maneira?
-        taskService.create(taskExistente);
-
-        return taskMapper.responseDTOList(taskService.list());
+        Task task = taskMapper.responseEntityUpdate(updateDTO);
+        return taskMapper.responseDTOList(taskService.update(id, task));
     }
 
     @DeleteMapping("/{id}")
