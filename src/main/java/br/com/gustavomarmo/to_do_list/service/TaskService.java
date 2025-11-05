@@ -27,7 +27,7 @@ public class TaskService {
                 .orElseThrow(TaskNotFoundException::new);
     }
 
-    public List<Task> update(Long id, Task task) {
+    public Task update(Long id, Task task) {
 
         Task taskExistente = taskRepository.findById(id)
                         .orElseThrow(() -> new RuntimeException("Tarefa não encontrada com id: " + id));
@@ -46,7 +46,8 @@ public class TaskService {
         }
 
         taskRepository.save(taskExistente);
-        return list();
+
+        return taskExistente;
     }
     public List<Task> delete(Long id) {
         taskRepository.deleteById(id);

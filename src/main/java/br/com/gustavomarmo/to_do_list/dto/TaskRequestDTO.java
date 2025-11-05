@@ -15,7 +15,7 @@ public class TaskRequestDTO {
     @Length(min = 5,max = 30, message = "A descrição deve ter no mínimo 5 caracteres")
     private String descricao;
 
-    @NotNull(message = "O campo 'realizadoo' é obrigatório")
+    @NotNull(message = "O campo 'realizado' é obrigatório")
     private Boolean realizado;
 
     @NotNull (message = "É obrigatório colocar uma mensagem")

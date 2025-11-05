@@ -2,6 +2,7 @@ package br.com.gustavomarmo.to_do_list.mapper;
 
 import br.com.gustavomarmo.to_do_list.dto.TaskRequestDTO;
 import br.com.gustavomarmo.to_do_list.dto.TaskRequestUpdateDTO;
+import br.com.gustavomarmo.to_do_list.dto.TaskResponseDTO;
 import br.com.gustavomarmo.to_do_list.dto.TaskResponseIdDTO;
 import br.com.gustavomarmo.to_do_list.model.Task;
 import org.springframework.stereotype.Component;
@@ -31,9 +32,10 @@ public class TaskMapper {
         return task;
     }
 
-    public TaskRequestDTO responseDTO(Task task){
-        TaskRequestDTO dto = new TaskRequestDTO();
+    public TaskResponseDTO responseDTO(Task task){
+        TaskResponseDTO dto = new TaskResponseDTO();
 
+        dto.setId(task.getId());
         dto.setNome(task.getNome());
         dto.setDescricao(task.getDescricao());
         dto.setRealizado(task.isRealizado());
@@ -50,7 +52,7 @@ public class TaskMapper {
         return dto;
     }
 
-    public List<TaskRequestDTO> responseDTOList(List<Task> taskList) {
+    public List<TaskResponseDTO> responseDTOList(List<Task> taskList) {
         return taskList.stream()
                 .map(this::responseDTO)
                 .toList();
