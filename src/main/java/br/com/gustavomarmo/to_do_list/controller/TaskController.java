@@ -8,6 +8,7 @@ import br.com.gustavomarmo.to_do_list.mapper.TaskMapper;
 import br.com.gustavomarmo.to_do_list.model.Task;
 import br.com.gustavomarmo.to_do_list.service.TaskService;
 import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -35,6 +36,7 @@ public class TaskController {
         return taskMapper.responseDTO(taskService.find(id));
     }
 
+    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
     TaskResponseIdDTO create(@Valid @RequestBody TaskRequestDTO dto){
         return taskMapper.responseIdDTO(taskService.create(taskMapper.responseEntity(dto)));
