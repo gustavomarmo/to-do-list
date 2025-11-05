@@ -4,9 +4,7 @@ import jakarta.validation.constraints.*;
 import lombok.Data;
 
 @Data
-public class TaskUpdateDTO {
-
-    private Long id;
+public class TaskRequestUpdateDTO {
 
     @Size(min = 3, message = "O nome deve ter no mínimo 3 caracteres")
     private String nome;

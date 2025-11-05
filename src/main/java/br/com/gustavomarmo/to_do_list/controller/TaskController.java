@@ -1,7 +1,8 @@
 package br.com.gustavomarmo.to_do_list.controller;
 
-import br.com.gustavomarmo.to_do_list.dto.TaskDTO;
-import br.com.gustavomarmo.to_do_list.dto.TaskUpdateDTO;
+import br.com.gustavomarmo.to_do_list.dto.TaskRequestDTO;
+import br.com.gustavomarmo.to_do_list.dto.TaskRequestUpdateDTO;
+import br.com.gustavomarmo.to_do_list.dto.TaskResponseIdDTO;
 import br.com.gustavomarmo.to_do_list.mapper.TaskMapper;
 import br.com.gustavomarmo.to_do_list.model.Task;
 import br.com.gustavomarmo.to_do_list.service.TaskService;
@@ -23,28 +24,28 @@ public class TaskController {
     }
 
     @GetMapping
-    List<TaskDTO> list() {
+    List<TaskRequestDTO> list() {
         return taskMapper.responseDTOList((taskService.list()));
     }
 
     @GetMapping("/{id}")
-    TaskDTO find(@PathVariable Long id){
+    TaskRequestDTO find(@PathVariable Long id){
         return taskMapper.responseDTO(taskService.find(id));
     }
 
     @PostMapping
-    Long create(@Valid @RequestBody TaskDTO dto){
-        return taskMapper.responseDTO(taskService.create(taskMapper.responseEntity(dto))).getId();
+    TaskResponseIdDTO create(@Valid @RequestBody TaskRequestDTO dto){
+        return taskMapper.responseIdDTO(taskService.create(taskMapper.responseEntity(dto)));
     }
 
     @PutMapping("/{id}")
-    List<TaskDTO> update(@PathVariable("id") Long id, @Valid @RequestBody TaskUpdateDTO updateDTO) {
+    List<TaskRequestDTO> update(@PathVariable("id") Long id, @Valid @RequestBody TaskRequestUpdateDTO updateDTO) {
         Task task = taskMapper.responseEntityUpdate(updateDTO);
         return taskMapper.responseDTOList(taskService.update(id, task));
     }
 
     @DeleteMapping("/{id}")
-    List<TaskDTO> delete(@PathVariable("id") Long id) {
+    List<TaskRequestDTO> delete(@PathVariable("id") Long id) {
         return taskMapper.responseDTOList(taskService.delete(id));
     }
 

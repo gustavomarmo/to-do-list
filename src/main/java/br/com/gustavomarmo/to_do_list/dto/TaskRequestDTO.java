@@ -5,10 +5,7 @@ import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 
 @Data
-public class TaskDTO {
-
-    @Null(message = "O ID não pode ser enviado no corpo da requisição")
-    private Long id;
+public class TaskRequestDTO {
 
     @NotBlank(message = "O nome não pode estar em branco")
     @Length(min = 3, message = "O nome deve ter no mínimo 3 caracteres")
