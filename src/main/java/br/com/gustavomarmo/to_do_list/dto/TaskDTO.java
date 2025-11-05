@@ -15,7 +15,7 @@ public class TaskDTO {
     private String nome;
 
     @NotBlank(message = "A descrição não pode estar em branco")
-    @Length(min = 5,max = 30, message = "A descriação deve ter no mínimo 5 caracteres")
+    @Length(min = 5,max = 30, message = "A descrição deve ter no mínimo 5 caracteres")
     private String descricao;
 
     @NotNull(message = "O campo 'realizado' é obrigatório")
