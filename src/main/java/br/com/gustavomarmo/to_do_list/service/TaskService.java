@@ -23,14 +23,12 @@ public class TaskService {
     }
 
     public Task find(Long id) {
-        return taskRepository.findById(id)
-                .orElseThrow(TaskNotFoundException::new);
+        return taskRepository.findById(id).orElseThrow(TaskNotFoundException::new);
     }
 
     public Task update(Long id, Task task) {
 
-        Task taskExistente = taskRepository.findById(id)
-                        .orElseThrow(() -> new RuntimeException("Tarefa não encontrada com id: " + id));
+        Task taskExistente = taskRepository.findById(id).orElseThrow(TaskNotFoundException::new);
 
         if (task.getNome() != null) {
             taskExistente.setNome(task.getNome());
@@ -49,8 +47,7 @@ public class TaskService {
 
         return taskExistente;
     }
-    public List<Task> delete(Long id) {
-        taskRepository.deleteById(id);
-        return list();
+    public void delete(Long id) {
+            taskRepository.deleteById(id);
     }
 }
