@@ -23,12 +23,12 @@ public class TaskService {
     }
 
     public Task find(Long id) {
-        return taskRepository.findById(id).orElseThrow(TaskNotFoundException::new);
+        return taskRepository.findById(id).orElseThrow(() -> new TaskNotFoundException(id));
     }
 
     public Task update(Long id, Task task) {
 
-        Task taskExistente = taskRepository.findById(id).orElseThrow(TaskNotFoundException::new);
+        Task taskExistente = taskRepository.findById(id).orElseThrow(() -> new TaskNotFoundException(id));
 
         if (task.getNome() != null) {
             taskExistente.setNome(task.getNome());
