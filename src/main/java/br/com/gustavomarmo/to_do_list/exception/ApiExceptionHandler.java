@@ -14,4 +14,11 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
         ApiExceptionMessage threatResponse = new ApiExceptionMessage(HttpStatus.NOT_FOUND, ex.getMessage());
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(threatResponse);
     }
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<ApiExceptionMessage> handlerException(Exception ex) {
+        ApiExceptionMessage threatResponse = new ApiExceptionMessage(HttpStatus.INTERNAL_SERVER_ERROR, "Internal Server Error");
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(threatResponse);
+
+    }
 }
