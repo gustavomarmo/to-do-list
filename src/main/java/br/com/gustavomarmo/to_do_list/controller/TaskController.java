@@ -8,6 +8,7 @@ import br.com.gustavomarmo.to_do_list.mapper.TaskMapper;
 import br.com.gustavomarmo.to_do_list.model.Task;
 import br.com.gustavomarmo.to_do_list.service.TaskService;
 import jakarta.validation.Valid;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -27,8 +28,9 @@ public class TaskController {
     }
 
     @GetMapping
-    List<TaskResponseDTO> list() {
-        return taskMapper.responseDTOList((taskService.list()));
+    List<TaskResponseDTO> list(@RequestParam int page,
+                               @RequestParam int itens) {
+        return taskMapper.responseDTOList((taskService.list(page, itens)));
     }
 
     @GetMapping("/{id}")

@@ -3,8 +3,9 @@ package br.com.gustavomarmo.to_do_list.service;
 import br.com.gustavomarmo.to_do_list.exception.TaskNotFoundException;
 import br.com.gustavomarmo.to_do_list.model.Task;
 import br.com.gustavomarmo.to_do_list.repository.TaskRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
-import java.util.List;
 
 @Service
 public class TaskService {
@@ -18,8 +19,8 @@ public class TaskService {
         return taskRepository.save(task);
     }
 
-    public List<Task> list() {
-        return taskRepository.findAll();
+    public Page<Task> list(int page, int itens) {
+        return taskRepository.findAll(PageRequest.of(page, itens));
     }
 
     public Task find(Long id) {
