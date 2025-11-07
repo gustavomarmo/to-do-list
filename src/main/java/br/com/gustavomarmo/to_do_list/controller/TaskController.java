@@ -54,6 +54,10 @@ public class TaskController {
     }
 
     @Operation(summary = "Criar uma nova tarefa")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "201", description = "Retorna o ID da tarefa criada"),
+            @ApiResponse(responseCode = "500", description = "Retorna 'Internal Server Error'")
+    })
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
     TaskResponseIdDTO create(@Valid @RequestBody TaskRequestDTO dto){
@@ -61,6 +65,11 @@ public class TaskController {
     }
 
     @Operation(summary = "Atualizar a tarefa pelo id")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Retorna a tarefa"),
+            @ApiResponse(responseCode = "404", description = "Retorna: 'ID not found: {id}'"),
+            @ApiResponse(responseCode = "500", description = "Retorna: 'Internal Server Error'")
+    })
     @PutMapping("/{id}")
     TaskResponseDTO update(@PathVariable("id") Long id, @Valid @RequestBody TaskRequestUpdateDTO updateDTO) {
         Task task = taskMapper.responseEntityUpdate(updateDTO);
@@ -68,6 +77,10 @@ public class TaskController {
     }
 
     @Operation(summary = "Remover a tarefa pelo id")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "204", description = "Tarefa deletada ou não encontrada"),
+            @ApiResponse(responseCode = "500", description = "Retorna: 'Internal Server Error'")
+    })
     @DeleteMapping("/{id}")
     ResponseEntity<Void> delete(@PathVariable("id") Long id) {
         taskService.delete(id);
