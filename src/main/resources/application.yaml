@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/todolist
-    username: postgres
-    password: 230705
+    url: ${TO_DO_LIST_PG_URL:jdbc:postgresql://localhost:5432/todolist}
+    username: ${TO_DO_LIST_PG_USER:postgres}
+    password: ${TO_DO_LIST_PG_PWD:230705}
   jpa:
     hibernate:
       ddl-auto: update
